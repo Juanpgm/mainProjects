@@ -16,6 +16,6 @@ def create_app():
     app.config['SECRET_KEY'] = '12345rtfescdvf'
     
     from .userAPI import userAPI
-    app.register_blueprint(userAPI, url_prefix='/taks')
+    app.register_blueprint(userAPI, url_prefix='/tasks')
     
     return app
