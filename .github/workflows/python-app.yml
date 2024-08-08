@@ -1,24 +1,25 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
-
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
-
 name: CI/CD
 
-on: [push]
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    secrets:
-      FIREBASE_SERVICEACCOUNT_FILE: ${{ secrets.mainProjs.FIREBASE_SERVICEACCOUNT_FILE }}  # Access secret directly
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'  # Replace with your desired Python version
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run tests
+        run: pytest
+      - name: Lint code
+        run: flake8 .
 
-      - name: Get FIREBASE_SERVICEACCOUNT_FILE value
-        run: echo "FIREBASE_SERVICEACCOUNT_FILE=${{ secrets.FIREBASE_SERVICEACCOUNT_FILE }}"
-        env:  # Define a new environment variable here
-          FIRE_SECRET: ${{ secrets.FIREBASE_SERVICEACCOUNT_FILE }}
