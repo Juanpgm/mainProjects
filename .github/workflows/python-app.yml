@@ -1,19 +1,34 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Secrets environment variables
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-on:
-  push:
-    branches: [ "main" ]
-    pull_request:
-    branches: [ "main" ]
-jobs: 
-  secrets: 
+name: CI/CD
+
+env:
+  # ... other environment variables ...
+
+jobs:
+  build:
     runs-on: ubuntu-latest
-    env: 
-      FIRE_SECRET= $({mainProjs.FIREBASE_SERVICEACCOUNT_FILE})
+    secrets:
+      FIREBASE_SERVICEACCOUNT_FILE: ${{ secrets.mainProjs.FIREBASE_SERVICEACCOUNT_FILE }}  # Access secret directly
 
     steps:
-      name: Get secrets
-      run: echo "My secret is FIRE_SECRET"
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get FIREBASE_SERVICEACCOUNT_FILE value
+        run: echo "FIREBASE_SERVICEACCOUNT_FILE=${{ secrets.FIREBASE_SERVICEACCOUNT_FILE }}"
+        env:  # Define a new environment variable here
+          FIRE_SECRET: ${{ secrets.FIREBASE_SERVICEACCOUNT_FILE }}
+
+      - name: Install dependencies
+        # ... your installation steps ...
+
+      - name: Run tests
+        # ... your test commands ...
+
+      - name: Lint code
+        # ... your linting commands ...
