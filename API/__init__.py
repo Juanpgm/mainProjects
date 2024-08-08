@@ -3,14 +3,15 @@
 #from firebase_admin import credentials
 #from firebase_admin import db
 
-
+import os
 from flask import Flask
-import credentials
-from firebase_admin import initialize_app
+from firebase_admin import credentials, initialize_app
 # Obtener las credenciales de acceso a la API de Firebase
 # Para la Base de Datos No Relacional
-credential = credentials.firebase_cred_file
-default_app = initialize_app(credential)
+
+cred = credentials.Certificate("serviceAccountKey.json")
+
+default_app = initialize_app(cred)
 
 
 def create_app():
