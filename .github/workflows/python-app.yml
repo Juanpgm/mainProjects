@@ -4,7 +4,10 @@
 name: Secrets environment variables
 
 on:
-  workflow_distpach
+  push:
+  branches: [ "main" ]
+  pull_request:
+  branches: [ "main" ]
 jobs: 
   secrets: 
     runs-on: ubuntu-latest
