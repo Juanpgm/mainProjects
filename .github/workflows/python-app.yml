@@ -9,7 +9,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+<<<<<<< Updated upstream
 
+=======
+    env: 
+      FIRE_SECRET= $({mainProjs.FIREBASE_SERVICEACCOUNT_FILE})
+>>>>>>> Stashed changes
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
