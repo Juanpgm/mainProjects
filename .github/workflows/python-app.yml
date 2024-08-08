@@ -5,9 +5,9 @@ name: Secrets environment variables
 
 on:
   push:
-  branches: [ "main" ]
-  pull_request:
-  branches: [ "main" ]
+    branches: [ "main" ]
+    pull_request:
+    branches: [ "main" ]
 jobs: 
   secrets: 
     runs-on: ubuntu-latest
