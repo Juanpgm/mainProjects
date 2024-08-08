@@ -23,12 +23,3 @@ jobs:
         run: echo "FIREBASE_SERVICEACCOUNT_FILE=${{ secrets.FIREBASE_SERVICEACCOUNT_FILE }}"
         env:  # Define a new environment variable here
           FIRE_SECRET: ${{ secrets.FIREBASE_SERVICEACCOUNT_FILE }}
-
-      - name: Install dependencies
-        # ... your installation steps ...
-
-      - name: Run tests
-        # ... your test commands ...
-
-      - name: Lint code
-        # ... your linting commands ...
