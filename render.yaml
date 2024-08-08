@@ -1,0 +1,18 @@
+name: Secrets environment variables
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      FIRE_SECRET: ${{ secrets.FIREBASE_SERVICEACCOUNT_FILE }}
+    steps:
+      - name: Get secrets
+        run: echo "My secret is ${{ secrets.FIRE_SECRET }}" 
+
