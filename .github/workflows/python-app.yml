@@ -6,8 +6,7 @@
 
 name: CI/CD
 
-env:
-  # ... other environment variables ...
+on: [push]
 
 jobs:
   build:
