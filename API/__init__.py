@@ -10,7 +10,7 @@ from firebase_admin import credentials, initialize_app
 # Para la Base de Datos No Relacional
 
 cred = credentials.Certificate("serviceAccountKey.json")
-
+#cred = os.environ(["firesecret"])
 default_app = initialize_app(cred)
 
 
